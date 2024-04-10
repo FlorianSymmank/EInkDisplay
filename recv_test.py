@@ -7,10 +7,43 @@ import socket
 from datetime import datetime
 
 
+def chuncker(text, font):
+
+    log("chuncker", text)
+
+    chunks = text.split(" ")
+    curr_line = ""
+    lines = []
+    i = 0
+
+    space_w = font.getsize(" ")
+
+    for i in range(len(chunks)):
+        if (font.getsize(curr_line) + space_w + font.getsize(chunks[i])) < 122:
+            curr_line = f"{curr_line} {chunks[i]}"
+        else:
+            curr_line = curr_line.strip()
+            lines.append(curr_line)
+            curr_line = chunks[i]
+
+    lines.append(curr_line)
+    log("chuncker", f"Lines {'|'.join(lines)}")
+    return lines
+
+
 def draw(text):
     w_img = Image.new('1', (epd.height, epd.width), 255)
     w_draw = ImageDraw.Draw(w_img)
-    w_draw.text((10, 0), text, font=font20, fill=0)
+
+    if font20.getsize(text) < epd.width:
+        # simple
+        log("draw", "simple draw")
+        w_draw.text((10, 0), text, font=font20, fill=0)
+    else:
+        log("draw", "complex draw")
+        lines = chuncker(text, font20)
+        for line in lines:
+            w_draw.text((10, 0), line, font=font20, fill=0)
 
     # IDK needed second param ..
     r_img = Image.new('1', (epd.height, epd.width), 255)
@@ -25,7 +58,8 @@ def log(function_name, text):
         date = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
         myfile.write(f"{date} {function_name} -> {text}\n")
 
-log("main", "Started :)")
+
+log("main", f"Started :) (PID: {os.getpid()})")
 
 
 fonts_dir = "/usr/local/share/fonts"
