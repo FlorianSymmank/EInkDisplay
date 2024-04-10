@@ -16,10 +16,10 @@ def chuncker(text, font):
     lines = []
     i = 0
 
-    space_w = font.getsize(" ")
+    space_w = font.getlength(" ")
 
     for i in range(len(chunks)):
-        if (font.getsize(curr_line) + space_w + font.getsize(chunks[i])) < 122:
+        if (font.getlength(curr_line) + space_w + font.getlength(chunks[i])) < 122:
             curr_line = f"{curr_line} {chunks[i]}"
         else:
             curr_line = curr_line.strip()
@@ -35,7 +35,7 @@ def draw(text):
     w_img = Image.new('1', (epd.height, epd.width), 255)
     w_draw = ImageDraw.Draw(w_img)
 
-    if font20.getsize(text) < epd.width:
+    if font20.getlength(text) < epd.width:
         # simple
         log("draw", "simple draw")
         w_draw.text((10, 0), text, font=font20, fill=0)
