@@ -1,0 +1,2 @@
+to activate venv type 'source venv/bin/activate'
+deactivate with 'deactivate'
