@@ -43,4 +43,5 @@ while True:
     connection, address = serversocket.accept()
     buf = connection.recv(1024)
     if len(buf) > 0:
-        draw(buf)
+        text = str(buf, 'UTF-8')
+        draw(text)
