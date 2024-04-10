@@ -43,7 +43,7 @@ def draw(text):
         log("draw", "complex draw")
         lines = chuncker(text, font20)
         for i in range(len(lines)):
-            w_draw.text((10, 11*i), lines[i], font=font20, fill=0)
+            w_draw.text((10, 15*i), lines[i], font=font20, fill=0)
 
     # IDK needed second param ..
     r_img = Image.new('1', (epd.height, epd.width), 255)
