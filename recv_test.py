@@ -16,7 +16,11 @@ def draw(text):
     r_draw = ImageDraw.Draw(r_img)
 
     epd.display(epd.getbuffer(w_img), epd.getbuffer(r_img))
+    log(f"function draw: {text}")
 
+def log(text):
+    with open("log.txt", "a") as myfile:
+        myfile.write(f"{text}\n")
 
 fonts_dir = "/usr/local/share/fonts"
 font20 = ImageFont.truetype(os.path.join(fonts_dir, 'roboto.ttf'), 20)
@@ -30,7 +34,7 @@ draw("Initialized")
 
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serversocket.bind(('localhost', 8089))
+serversocket.bind(('0.0.0.0', 8089))
 serversocket.listen(1)
 
 draw("Listening on Port 8089")

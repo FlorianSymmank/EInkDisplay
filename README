@@ -1,2 +1,4 @@
+Create venv 'python -m venv venv'
+install 'pip install requirements.txt'
 to activate venv type 'source venv/bin/activate'
 deactivate with 'deactivate'
