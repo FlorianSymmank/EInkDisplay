@@ -19,7 +19,7 @@ def chuncker(text, font):
     space_w = font.getlength(" ")
 
     for i in range(len(chunks)):
-        if (font.getlength(curr_line) + space_w + font.getlength(chunks[i])) < 122:
+        if (font.getlength(curr_line) + space_w + font.getlength(chunks[i])) < epd.height:
             curr_line = f"{curr_line} {chunks[i]}"
         else:
             curr_line = curr_line.strip()
@@ -43,7 +43,7 @@ def draw(text):
         log("draw", "complex draw")
         lines = chuncker(text, font20)
         for i in range(len(lines)):
-            w_draw.text((10, 10*i), lines[i], font=font20, fill=0)
+            w_draw.text((10, 11*i), lines[i], font=font20, fill=0)
 
     # IDK needed second param ..
     r_img = Image.new('1', (epd.height, epd.width), 255)
