@@ -25,6 +25,8 @@ def log(function_name, text):
         date = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
         myfile.write(f"{date} {function_name} -> {text}\n")
 
+log("main", "Started :)")
+
 
 fonts_dir = "/usr/local/share/fonts"
 font20 = ImageFont.truetype(os.path.join(fonts_dir, 'roboto.ttf'), 20)
