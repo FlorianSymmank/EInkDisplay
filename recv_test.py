@@ -35,15 +35,15 @@ def draw(text):
     w_img = Image.new('1', (epd.height, epd.width), 255)
     w_draw = ImageDraw.Draw(w_img)
 
-    if font20.getlength(text) < epd.width:
+    if font20.getlength(text) < epd.height:
         # simple
         log("draw", "simple draw")
         w_draw.text((10, 0), text, font=font20, fill=0)
     else:
         log("draw", "complex draw")
         lines = chuncker(text, font20)
-        for line in lines:
-            w_draw.text((10, 0), line, font=font20, fill=0)
+        for i in range(len(lines)):
+            w_draw.text((10, 10*i), lines[i], font=font20, fill=0)
 
     # IDK needed second param ..
     r_img = Image.new('1', (epd.height, epd.width), 255)
