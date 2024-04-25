@@ -1,8 +1,0 @@
-Create venv 'python -m venv venv'
-install 'pip install requirements.txt'
-to activate venv type 'source venv/bin/activate'
-deactivate with 'deactivate'
-
-start programm 'python recv_text.py &'
-logs in log.txt
-listens on port 8089

@@ -1,0 +1,13 @@
+[Unit]
+Description=E Ink Display running on Port 8089
+After=network.target
+
+[Service]
+# edit path to your location
+User=flo
+WorkingDirectory=/home/flo/projects/EInkDisplay
+ExecStart=/home/flo/projects/EInkDisplay/venv/bin/python /home/flo/projects/EInkDisplay/recv_test.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
